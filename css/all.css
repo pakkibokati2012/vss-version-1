@@ -1,0 +1,616 @@
+/* http://meyerweb.com/eric/tools/css/reset/ 
+   v2.0 | 20110126
+   License: none (public domain)
+*/
+
+html,
+body,
+div,
+span,
+applet,
+object,
+iframe,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+p,
+blockquote,
+pre,
+a,
+abbr,
+acronym,
+address,
+big,
+cite,
+code,
+del,
+dfn,
+em,
+img,
+ins,
+kbd,
+q,
+s,
+samp,
+small,
+strike,
+strong,
+sub,
+sup,
+tt,
+var,
+b,
+u,
+i,
+center,
+dl,
+dt,
+dd,
+ol,
+ul,
+li,
+fieldset,
+form,
+label,
+legend,
+table,
+caption,
+tbody,
+tfoot,
+thead,
+tr,
+th,
+td,
+article,
+aside,
+canvas,
+details,
+embed,
+figure,
+figcaption,
+footer,
+header,
+hgroup,
+menu,
+nav,
+output,
+ruby,
+section,
+summary,
+time,
+mark,
+audio,
+video {
+    margin: 0;
+    padding: 0;
+    border: 0;
+    font-size: 100%;
+    font: inherit;
+    vertical-align: baseline;
+}
+
+/* HTML5 display-role reset for older browsers */
+article,
+aside,
+details,
+figcaption,
+figure,
+footer,
+header,
+hgroup,
+menu,
+nav,
+section {
+    display: block;
+}
+
+body {
+    line-height: 1;
+}
+
+ol,
+ul {
+    list-style: none;
+}
+
+blockquote,
+q {
+    quotes: none;
+}
+
+blockquote:before,
+blockquote:after,
+q:before,
+q:after {
+    content: '';
+    content: none;
+}
+
+table {
+    border-collapse: collapse;
+    border-spacing: 0;
+}
+
+body {
+    font: 14px/20px 'Roboto', sans-serif;
+    color: #fff;
+    background: #fff;
+    margin: 0;
+    padding: 0;
+    border-top: 25px solid #FBCF04;
+}
+
+button {
+    outline: none;
+    border: none;
+}
+
+header {
+    padding: 50px 0 10px;
+}
+
+h1 {
+    font-size: 32px;
+    line-height: 40px;
+    color: #354A5D;
+    text-align: center;
+    margin: 0 0 50px;
+    text-transform: uppercase;
+    font-weight: 600;
+}
+
+.schedule {
+    margin: 0 auto;
+    max-width: 100%;
+    padding-bottom: 30px;
+    text-align: center;
+}
+
+.schedule h2 {
+    display: none;
+}
+
+.schedule table {
+    width: 100%;
+    background: #F76E6E;
+
+}
+
+.owl-stage-outer {
+    box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+    -webkit-box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+}
+
+.schedule table th,
+.schedule table td {
+    text-align: center;
+}
+
+.schedule table td {
+    border-bottom: 1px solid #E7E7E7;
+    border-right: 1px solid #E7E7E7;
+}
+
+.schedule table tr td:first-child {
+    border: 0;
+}
+
+.schedule table thead tr:first-child th:first-child {
+    background: #FBCF04;
+    font-family: 'Audiowide', cursive;
+    font-size: 28px;
+    line-height: 30px;
+    color: #000;
+    background: #FBCF04;
+}
+
+.schedule table thead tr:first-child th {
+    background: #0CA2E4;
+    text-align: center;
+    padding: 15px;
+    vertical-align: middle;
+}
+
+.schedule table tbody tr td:first-child {
+    background: #0CA2E4;
+    text-align: center;
+    padding: 15px;
+    font-size: 29px;
+    line-height: 30px;
+    font-weight: 300;
+    border-bottom: 1px solid #E7E7E7;
+}
+
+.schedule table tbody tr:last-child td {
+    border-bottom: 0;
+    vertical-align: middle;
+}
+
+.day {
+    display: block;
+    font-size: 18px;
+    line-height: 20px;
+    color: #BDFBFF;
+    font-weight: bold;
+}
+
+.date {
+    font-size: 48px;
+    line-height: 50px;
+    color: #fff;
+    font-weight: 300;
+}
+
+.month {
+    font-size: 18px;
+    line-height: 20px;
+    color: #fff;
+    display: block;
+    font-weight: 300;
+}
+
+.action {
+    display: block;
+}
+
+.owl-carousel .owl-item .action img {
+    display: inline-block;
+    width: auto;
+    vertical-align: top;
+}
+
+.status {
+    display: block;
+    width: 90px;
+    margin: 0 auto;
+}
+
+.action-block {
+    background: #F76E6E;
+    padding: 30px 15px;
+    transition: 0.3s all linear;
+    -webkit-transition: 0.1s all linear;
+}
+
+.owl-carousel .owl-item .action-block .action img.true,
+.owl-carousel .owl-item .action-block .status.true {
+    display: none;
+}
+
+.action-block.true {
+    background: #53D6C2;
+    transition: 0.3s all linear;
+    -webkit-transition: 0.1s all linear;
+}
+
+.action-block.true:hover {
+    background: #20C5AC;
+}
+
+.owl-carousel .owl-item .action-block.true .action img.true,
+.owl-carousel .owl-item .action-block.true .status.true {
+    display: inline-block;
+}
+
+.owl-carousel .owl-item .action-block.true .action img.false,
+.owl-carousel .owl-item .action-block.true .status.false {
+    display: none;
+}
+
+.action-block:hover {
+    background: #E54C4C;
+}
+
+.action-block.available {
+    background: #53D6C2;
+}
+
+.owl-carousel.owl-loaded {
+    display: block;
+    margin: 0 0 50px;
+}
+
+button.submit {
+    background: #53D6C2;
+    border: none;
+    padding: 20px 16px 20px 85px;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    font-size: 14px;
+    line-height: 20px;
+    vertical-align: top;
+    border-radius: 25px;
+    -webkit-border-radius: 33px;
+    box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+    -webkit-box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+    transition: 0.2s all ease-in-out;
+    -webkit-transition: 0.2s all ease-in-out;
+}
+
+button.submit:hover {
+    background: #0CA2E4;
+}
+
+button.submit span {
+    background: url(../images/Right.png) 100% 50% no-repeat;
+    padding-right: 30px;
+    background-size: 7px 14px;
+    font-weight: 500;
+    padding-right: 66px;
+}
+
+.schedule .owl-theme .owl-nav [class*=owl-] {
+    background: #0CA2E4;
+    width: 54px;
+    height: 54px;
+    border-radius: 100%;
+    -webkit-border-radius: 100%;
+    box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+    -webkit-box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+    margin: 0;
+}
+
+.owl-theme .owl-nav {
+    margin-top: 0;
+    position: absolute;
+    top: 50%;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+    width: 100%;
+}
+
+.schedule .owl-theme .owl-nav .owl-prev {
+    background: #0CA2E4 url('../images/Left.png') no-repeat 50% 50%;
+    left: -95px;
+
+}
+
+.schedule .owl-theme .owl-nav .owl-next {
+    background: #0CA2E4 url('../images/Right.png') no-repeat 50% 50%;
+    right: -95px;
+}
+
+.schedule .owl-theme .owl-nav [class*=owl-] {
+    background-size: 10px 20px;
+    position: absolute;
+    overflow: hidden;
+    text-indent: -9999px;
+    display: inline-block;
+    transition: 0.3s background-color ease-in-out;
+    -webkit-transition: 0.3s background-color ease-in-out;
+    transform: translateY(-50%);
+    -webkit-transform: translateY(-50%);
+}
+
+.schedule .owl-theme .owl-nav [class*=owl-]:hover {
+    background-color: #FBCF04;
+}
+
+.owl-theme .owl-dots {
+    display: none;
+}
+
+@media (min-width: 768px) {
+    .container {
+        width: 660px;
+    }
+}
+
+@media (min-width: 992px) {
+    .container {
+        width: 860px;
+    }
+}
+
+@media (min-width: 1200px) {
+    .container {
+        width: 1075px;
+    }
+}
+
+
+@media (max-width: 1350px) {
+    .schedule table thead tr:first-child th {
+        padding: 10px;
+    }
+
+    .action-block {
+        padding: 15px 10px;
+    }
+
+    .schedule .owl-theme .owl-nav .owl-next {
+        right: -70px;
+    }
+
+    .schedule .owl-theme .owl-nav .owl-prev {
+        left: -70px;
+    }
+}
+
+@media (max-width: 1199px) {
+
+    .owl-carousel .owl-item .action-block .status,
+    .owl-carousel .owl-item .action-block.true .status {
+        display: none !important;
+    }
+
+    .date {
+        font-size: 35px;
+        line-height: 40px;
+    }
+
+    .schedule table thead tr:first-child th:first-child {
+        font-size: 20px;
+        line-height: 24px;
+    }
+
+    .schedule table thead tr:first-child th {
+        padding: 7px 12px;
+    }
+
+    .schedule table thead tr:first-child th {
+        padding: 10px 12px;
+    }
+
+    .action-block {
+        padding: 15px;
+    }
+
+    .schedule table tbody tr td:first-child {
+        font-size: 20px;
+        line-height: 24px;
+    }
+}
+
+@media (max-width: 991px) {
+
+    .date {
+        font-size: 28px;
+        line-height: 30px;
+    }
+
+    .schedule .owl-theme .owl-nav [class*=owl-] {
+        width: 44px;
+        height: 44px;
+    }
+
+    button.submit {
+        padding: 14px 15px 14px 70px;
+    }
+
+}
+
+@media (max-width: 767px) {
+    .schedule table thead tr:first-child th:first-child {
+        font-size: 16px;
+        line-height: 20px;
+    }
+
+    .day em,
+    .date,
+    .month {
+        display: none;
+    }
+
+    .owl-theme .owl-nav {
+        top: 13px;
+        transform: translateY(0%);
+        -webkit-transform: translateY(0%);
+    }
+
+    .schedule .owl-theme .owl-nav .owl-prev {
+        left: 0;
+    }
+
+    .schedule .owl-theme .owl-nav .owl-next {
+        right: 0;
+    }
+
+    .schedule .owl-theme .owl-nav [class*=owl-] {
+        width: 35px;
+        height: 35px;
+    }
+
+    .action-block {
+        padding: 10px 15px;
+    }
+
+    .schedule table tbody tr td:first-child {
+        padding: 5px 10px;
+        vertical-align: middle;
+    }
+
+    button.submit {
+        padding: 12px 10px 12px 30px;
+    }
+
+    button.submit span {
+        padding-right: 25px;
+    }
+
+    h1 {
+        font-size: 24px;
+        line-height: 30px;
+        margin: 0 0 20px;
+    }
+
+    .schedule h2 {
+        display: block;
+        color: #000;
+        font-size: 20px;
+        line-height: 30px;
+        margin: 0 0 10px;
+        color: #0da2e4;
+        font-weight: 100;
+    }
+
+    .owl-stage-outer {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+    }
+
+    .schedule table {
+        box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+        -webkit-box-shadow: 1px 1px 5px rgb(181, 171, 171, 0.6);
+    }
+
+    .owl-carousel.owl-loaded {
+        display: block;
+        margin: 0 0 20px;
+    }
+
+    header {
+        padding: 25px 0 10px;
+    }
+}
+
+@media (max-width: 576px) {
+    body {
+
+        border-top: 15px solid #FBCF04;
+    }
+
+    .schedule .owl-theme .owl-nav [class*=owl-] {
+        box-shadow: none;
+        -webkit-box-shadow: none;
+        width: 12px;
+        height: 20px;
+    }
+
+    .schedule .owl-theme .owl-nav .owl-prev {
+        background: url('../images/Left-b.png') no-repeat 50% 50%;
+        background-size: cover;
+
+    }
+
+    .schedule .owl-theme .owl-nav .owl-next {
+        background: url('../images/Right-b.png') no-repeat 50% 50%;
+        background-size: cover;
+    }
+
+    .clock {
+        font-size: 13px;
+
+    }
+
+    .action-block {
+        padding: 5px;
+    }
+
+    .schedule .owl-theme .owl-nav [class*=owl-]:hover {
+        background-color: #fff;
+    }
+
+    .action img {
+        padding: 5px;
+    }
+
+    h1 {
+        font-size: 18px;
+        line-height: 22px;
+        margin: 0 0 6px;
+    }
+}

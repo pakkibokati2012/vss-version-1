@@ -1,0 +1,383 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    <!-- The above 3 meta tags *must* come first in the head; any other head content must come *after* these tags -->
+    <title>VSS Portal - Schedule Your Availability</title>
+    <link rel="shortcut icon" href="favicon.ico" type="image/x-icon" />
+    <!-- Latest compiled and minified CSS -->
+    <link
+      rel="stylesheet"
+      href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+      integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700"
+      rel="stylesheet"
+    />
+    <link rel="stylesheet" href="css/all.css" />
+    <link
+      href="https://fonts.googleapis.com/css?family=Audiowide"
+      rel="stylesheet"
+    />
+    <!-- HTML5 shim and Respond.js for IE8 support of HTML5 elements and media queries -->
+    <!-- WARNING: Respond.js doesn't work if you view the page via file:// -->
+    <!--[if lt IE 9]>
+      <script src="https://oss.maxcdn.com/html5shiv/3.7.3/html5shiv.min.js"></script>
+      <script src="https://oss.maxcdn.com/respond/1.4.2/respond.min.js"></script>
+    <![endif]-->
+  </head>
+
+  <body>
+    <header>
+      <h1>Schedule your availability</h1>
+    </header>
+    <button class="prev" id="prev-button">
+      <span style="color: black">Prev</span>
+    </button>
+    <button class="prev" id="next-button">
+      <span style="color: black">Next</span>
+    </button>
+    <!-- Set up your HTML -->
+    <div class="schedule">
+      <div class="item vss-table-responsive">
+        <table width="100%" border="0" cellpadding="0" cellspacing="0">
+          <thead>
+            <tr id="table-head"></tr>
+          </thead>
+          <tbody id="table-body">
+            <tr id="am-row"></tr>
+            <tr id="pm-row"></tr>
+            <tr id="9-10"></tr>
+            <tr id="10-11"></tr>
+            <tr id="11-12"></tr>
+            <tr id="12-13"></tr>
+            <tr id="13-14"></tr>
+            <tr id="14-15"></tr>
+            <tr id="15-16"></tr>
+            <tr id="16-17"></tr>
+          </tbody>
+        </table>
+      </div>
+      <button class="submit"><span>submit</span></button>
+    </div>
+    <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
+    <!-- Latest compiled and minified JavaScript -->
+    <script
+      src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+      integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+      crossorigin="anonymous"
+    ></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/moment.js/2.24.0/moment.min.js"></script>
+    <!-- <script src="./script/weekday-header.js"></script> -->
+    <script type="text/javascript">
+      $(document).ready(function() {
+        var startOfWeek = moment().startOf('week');
+        var days = [];
+        var available = [];
+        var rows = [
+          '9-10',
+          '10-11',
+          '11-12',
+          '12-13',
+          '13-14',
+          '14-15',
+          '15-16',
+          '16-17'
+        ];
+
+        function makeData(start) {
+          days = [];
+          for (i = 0; i < 7; i++) {
+            days.push(start);
+            start = start.clone().add(1, 'd');
+          }
+        }
+
+        function makeTable() {
+          $('#table-head').empty();
+          $('#am-row').empty();
+          $('#pm-row').empty();
+          $('#9-10').empty();
+          $('#10-11').empty();
+          $('#11-12').empty();
+          $('#12-13').empty();
+          $('#13-14').empty();
+          $('#14-15').empty();
+          $('#15-16').empty();
+          $('#16-17').empty();
+
+          $('#table-head').append('<th><strong class="vss">VSS</strong></th>');
+          $('#am-row').append('<td> <div class="clock"> AM </div> </td>');
+          $('#pm-row').append('<td> <div class="clock"> PM </div> </td>');
+          $('#9-10').append('<td> <div class="clock"> 9-10 </div> </td>');
+          $('#10-11').append('<td> <div class="clock"> 10-11 </div> </td>');
+          $('#11-12').append('<td> <div class="clock"> 11-12 </div> </td>');
+          $('#12-13').append('<td> <div class="clock"> 12-13 </div> </td>');
+          $('#13-14').append('<td> <div class="clock"> 13-14 </div> </td>');
+          $('#14-15').append('<td> <div class="clock"> 14-15 </div> </td>');
+          $('#15-16').append('<td> <div class="clock"> 15-16 </div> </td>');
+          $('#16-17').append('<td> <div class="clock"> 16-17 </div> </td>');
+
+          //   rows.forEach(each => {
+          //     $('table tbody').append(
+          //       '<tr><td id="' +
+          //         each +
+          //         '"> <div class="clock">' +
+          //         each +
+          //         '</div> </td></tr>'
+          //     );
+          //   });
+
+          for (i = 0; i <= 6; i++) {
+            var date = days[i].format('D'); // 1 2 ... 31
+            var day = days[i].format('ddd'); // Sun Mon ..
+            var month = days[i].format('MMM'); // Jan Feb ..
+            $('table thead tr').append(
+              '<th>  \
+                  <strong class="day">' +
+                day +
+                '</strong> \
+                  <strong class="date">' +
+                date +
+                '</strong> \
+                  <strong class="month">' +
+                month +
+                '</strong> \
+                </th>'
+            );
+            $('#am-row').append(
+              ' \
+              <td> \
+                <div class="action-block" id="am-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+
+            $('#pm-row').append(
+              ' \
+              <td> \
+                <div class="action-block" id="pm-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#9-10').append(
+              ' \
+              <td> \
+                <div class="action-block" id="9-10-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#10-11').append(
+              ' \
+              <td> \
+                <div class="action-block" id="10-11' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#11-12').append(
+              ' \
+              <td> \
+                <div class="action-block" id="11-12-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#12-13').append(
+              ' \
+              <td> \
+                <div class="action-block" id="12-13-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#13-14').append(
+              ' \
+              <td> \
+                <div class="action-block" id="13-14-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#14-15').append(
+              ' \
+              <td> \
+                <div class="action-block" id="14-15-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#15-16').append(
+              ' \
+              <td> \
+                <div class="action-block" id="15-16-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#16-17').append(
+              ' \
+              <td> \
+                <div class="action-block" id="16-17-' +
+                day +
+                date +
+                month +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            // $('#9-10').append(
+            //   ' \
+            //   <td> \
+            //     <div class="action-block" id="pm-' +
+            //     day +
+            //     date +
+            //     month +
+            //     '"> \
+            //         <span class="action"> \
+            //             <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+            //             <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+            //         </span> \
+            //         <span class="status false">UNAVAILABLE</span> \
+            //         <span class="status true">AVAILABLE</span></div> \
+            // </td> \
+            // '
+            // );
+          }
+          for (i = 0; i <= available.length - 1; i++) {
+            $('#' + available[i]).addClass('true');
+          }
+          console.log('maketable', available);
+        }
+
+        makeData(startOfWeek);
+        makeTable();
+
+        $('#next-button').click(function() {
+          startOfWeek = days[6].add(1, 'd');
+          makeData(startOfWeek);
+          makeTable();
+        });
+        $('#prev-button').click(function() {
+          startOfWeek = days[0].subtract(7, 'd');
+          makeData(startOfWeek);
+          makeTable();
+        });
+        $('tr').on('click', 'td', function() {
+          console.log(this.firstElementChild);
+          $(this.firstElementChild).toggleClass('true');
+          if (this.firstElementChild.classList.contains('true')) {
+            available.push(this.firstElementChild.id);
+          } else {
+            available.splice(available.indexOf(this.firstElementChild.id), 1);
+          }
+          console.log('click', available);
+        });
+      });
+    </script>
+  </body>
+</html>
