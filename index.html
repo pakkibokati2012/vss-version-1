@@ -57,8 +57,6 @@
             <tr id="table-head"></tr>
           </thead>
           <tbody id="table-body">
-            <tr id="am-row"></tr>
-            <tr id="pm-row"></tr>
             <tr id="9-10"></tr>
             <tr id="10-11"></tr>
             <tr id="11-12"></tr>
@@ -70,7 +68,7 @@
           </tbody>
         </table>
       </div>
-      <button class="submit"><span>submit</span></button>
+      <button class="submit" id="submit"><span>submit</span></button>
     </div>
     <!-- jQuery (necessary for Bootstrap's JavaScript plugins) -->
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.4/jquery.min.js"></script>
@@ -109,8 +107,6 @@
 
         function makeTable() {
           $('#table-head').empty();
-          $('#am-row').empty();
-          $('#pm-row').empty();
           $('#9-10').empty();
           $('#10-11').empty();
           $('#11-12').empty();
@@ -121,8 +117,6 @@
           $('#16-17').empty();
 
           $('#table-head').append('<th><strong class="vss">VSS</strong></th>');
-          $('#am-row').append('<td> <div class="clock"> AM </div> </td>');
-          $('#pm-row').append('<td> <div class="clock"> PM </div> </td>');
           $('#9-10').append('<td> <div class="clock"> 9-10 </div> </td>');
           $('#10-11').append('<td> <div class="clock"> 10-11 </div> </td>');
           $('#11-12').append('<td> <div class="clock"> 11-12 </div> </td>');
@@ -131,17 +125,6 @@
           $('#14-15').append('<td> <div class="clock"> 14-15 </div> </td>');
           $('#15-16').append('<td> <div class="clock"> 15-16 </div> </td>');
           $('#16-17').append('<td> <div class="clock"> 16-17 </div> </td>');
-
-          //   rows.forEach(each => {
-          //     $('table tbody').append(
-          //       '<tr><td id="' +
-          //         each +
-          //         '"> <div class="clock">' +
-          //         each +
-          //         '</div> </td></tr>'
-          //     );
-          //   });
-
           for (i = 0; i <= 6; i++) {
             var date = days[i].format('D'); // 1 2 ... 31
             var day = days[i].format('ddd'); // Sun Mon ..
@@ -158,41 +141,6 @@
                 month +
                 '</strong> \
                 </th>'
-            );
-            $('#am-row').append(
-              ' \
-              <td> \
-                <div class="action-block" id="am-' +
-                day +
-                date +
-                month +
-                '"> \
-                    <span class="action"> \
-                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
-                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
-                    </span> \
-                    <span class="status false">UNAVAILABLE</span> \
-                    <span class="status true">AVAILABLE</span></div> \
-            </td> \
-            '
-            );
-
-            $('#pm-row').append(
-              ' \
-              <td> \
-                <div class="action-block" id="pm-' +
-                day +
-                date +
-                month +
-                '"> \
-                    <span class="action"> \
-                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
-                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
-                    </span> \
-                    <span class="status false">UNAVAILABLE</span> \
-                    <span class="status true">AVAILABLE</span></div> \
-            </td> \
-            '
             );
             $('#9-10').append(
               ' \
@@ -214,7 +162,7 @@
             $('#10-11').append(
               ' \
               <td> \
-                <div class="action-block" id="10-11' +
+                <div class="action-block" id="10-11-' +
                 day +
                 date +
                 month +
@@ -330,23 +278,6 @@
             </td> \
             '
             );
-            // $('#9-10').append(
-            //   ' \
-            //   <td> \
-            //     <div class="action-block" id="pm-' +
-            //     day +
-            //     date +
-            //     month +
-            //     '"> \
-            //         <span class="action"> \
-            //             <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
-            //             <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
-            //         </span> \
-            //         <span class="status false">UNAVAILABLE</span> \
-            //         <span class="status true">AVAILABLE</span></div> \
-            // </td> \
-            // '
-            // );
           }
           for (i = 0; i <= available.length - 1; i++) {
             $('#' + available[i]).addClass('true');
@@ -367,6 +298,9 @@
           makeData(startOfWeek);
           makeTable();
         });
+        $('#submit').click(function() {
+          console.log(available);
+        });
         $('tr').on('click', 'td', function() {
           console.log(this.firstElementChild);
           $(this.firstElementChild).toggleClass('true');
@@ -375,7 +309,6 @@
           } else {
             available.splice(available.indexOf(this.firstElementChild.id), 1);
           }
-          console.log('click', available);
         });
       });
     </script>
