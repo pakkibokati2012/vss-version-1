@@ -44,10 +44,10 @@
       <h1>Schedule your availability</h1>
     </header>
     <button class="prev" id="prev-button">
-      <span style="color: black">Prev</span>
+      <span>Prev</span>
     </button>
     <button class="prev" id="next-button">
-      <span style="color: black">Next</span>
+      <span>Next</span>
     </button>
     <!-- Set up your HTML -->
     <div class="schedule">
@@ -57,7 +57,7 @@
             <tr id="table-head"></tr>
           </thead>
           <tbody id="table-body">
-            <tr id="9-10"></tr>
+            <tr id="09-10"></tr>
             <tr id="10-11"></tr>
             <tr id="11-12"></tr>
             <tr id="12-13"></tr>
@@ -86,16 +86,6 @@
         var startOfWeek = moment().startOf('week');
         var days = [];
         var available = [];
-        var rows = [
-          '9-10',
-          '10-11',
-          '11-12',
-          '12-13',
-          '13-14',
-          '14-15',
-          '15-16',
-          '16-17'
-        ];
 
         function makeData(start) {
           days = [];
@@ -107,7 +97,7 @@
 
         function makeTable() {
           $('#table-head').empty();
-          $('#9-10').empty();
+          $('#09-10').empty();
           $('#10-11').empty();
           $('#11-12').empty();
           $('#12-13').empty();
@@ -117,7 +107,7 @@
           $('#16-17').empty();
 
           $('#table-head').append('<th><strong class="vss">VSS</strong></th>');
-          $('#9-10').append('<td> <div class="clock"> 9-10 </div> </td>');
+          $('#09-10').append('<td> <div class="clock"> 9-10 </div> </td>');
           $('#10-11').append('<td> <div class="clock"> 10-11 </div> </td>');
           $('#11-12').append('<td> <div class="clock"> 11-12 </div> </td>');
           $('#12-13').append('<td> <div class="clock"> 12-13 </div> </td>');
@@ -126,9 +116,10 @@
           $('#15-16').append('<td> <div class="clock"> 15-16 </div> </td>');
           $('#16-17').append('<td> <div class="clock"> 16-17 </div> </td>');
           for (i = 0; i <= 6; i++) {
-            var date = days[i].format('D'); // 1 2 ... 31
+            var date = days[i].format('DD'); // 1 2 ... 31
             var day = days[i].format('ddd'); // Sun Mon ..
             var month = days[i].format('MMM'); // Jan Feb ..
+            var year = days[i].format('YYYY');
             $('table thead tr').append(
               '<th>  \
                   <strong class="day">' +
@@ -142,13 +133,14 @@
                 '</strong> \
                 </th>'
             );
-            $('#9-10').append(
+            $('#09-10').append(
               ' \
               <td> \
-                <div class="action-block" id="9-10-' +
+                <div class="action-block" id="09-10-' +
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -166,6 +158,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -183,6 +176,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -200,6 +194,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -217,6 +212,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -234,6 +230,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -251,6 +248,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -268,6 +266,7 @@
                 day +
                 date +
                 month +
+                year +
                 '"> \
                     <span class="action"> \
                         <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
@@ -299,7 +298,35 @@
           makeTable();
         });
         $('#submit').click(function() {
-          console.log(available);
+          var formatted = available.map(each => {
+            return {
+              date: each.substring(6),
+              time: each.substring(0, 5)
+            };
+          });
+          var dates = formatted.map(ea => {
+            return ea.date;
+          });
+          var withoutDuplicates = dates.filter(function(item, pos) {
+            return dates.indexOf(item) == pos;
+          });
+          var answer = withoutDuplicates.map(each => {
+            return {
+              date: each,
+              time: []
+            };
+          });
+
+          formatted.forEach(each => {
+            console.log('formatted', each);
+            answer.forEach(ea => {
+              if (each.date === ea.date) {
+                answer[answer.indexOf(ea)].time.push(each.time);
+              }
+            });
+          });
+
+          console.log('answer', answer);
         });
         $('tr').on('click', 'td', function() {
           console.log(this.firstElementChild);
@@ -309,6 +336,7 @@
           } else {
             available.splice(available.indexOf(this.firstElementChild.id), 1);
           }
+          console.log(available);
         });
       });
     </script>

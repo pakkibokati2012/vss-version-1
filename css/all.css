@@ -399,6 +399,34 @@ button.submit span {
   }
 }
 
+#next-button {
+  position: absolute;
+  top: 80%;
+  right: 200px;
+  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+  background-color: #00c0fa;
+  color: white;
+}
+
+#next-button span,
+#prev-button span {
+  color: #fff;
+  font-size: 1.6rem;
+}
+
+#prev-button {
+  position: absolute;
+  top: 80%;
+  left: 200px;
+  border-radius: 100px;
+  height: 100px;
+  width: 100px;
+  background-color: #00c0fa;
+  color: white;
+}
+
 @media (min-width: 992px) {
   .container {
     width: 860px;
