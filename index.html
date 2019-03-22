@@ -85,7 +85,30 @@
       $(document).ready(function() {
         var startOfWeek = moment().startOf('week');
         var days = [];
+        var input = [
+          {
+            date: '17-03-2019',
+            time: [
+              '09-10',
+              '10-11',
+              '11-12',
+              '12-13',
+              '13-14',
+              '15-16',
+              '14-15',
+              '16-17'
+            ]
+          },
+          { date: '24-03-2019', time: ['09-10', '10-11', '11-12', '16-17'] },
+          { date: '27-03-2019', time: ['09-10', '10-11', '11-12', '16-17'] },
+          { date: '26-03-2019', time: ['09-10', '10-11', '11-12', '16-17'] }
+        ];
         var available = [];
+        input.forEach(each => {
+          each.time.forEach(ea => {
+            available.push(ea + '-' + each.date);
+          });
+        });
 
         function makeData(start) {
           days = [];
