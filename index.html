@@ -42,6 +42,7 @@
   <body>
     <header>
       <h1>Schedule your availability</h1>
+      <h1 id="date-info"></h1>
     </header>
     <button class="prev" id="prev-button">
       <span>Prev</span>
@@ -96,6 +97,7 @@
         }
 
         function makeTable() {
+          $('#date-info').empty();
           $('#table-head').empty();
           $('#09-10').empty();
           $('#10-11').empty();
@@ -105,6 +107,18 @@
           $('#14-15').empty();
           $('#15-16').empty();
           $('#16-17').empty();
+
+          $('#date-info').append(
+            '<p>' +
+              days[0].format('MM') +
+              '-' +
+              days[0].format('DD') +
+              '              ' +
+              days[6].format('MM') +
+              '-' +
+              days[6].format('DD') +
+              '</p>'
+          );
 
           $('#table-head').append('<th><strong class="vss">VSS</strong></th>');
           $('#09-10').append('<td> <div class="clock"> 9-10 </div> </td>');
@@ -126,10 +140,10 @@
                 day +
                 '</strong> \
                   <strong class="date">' +
-                date +
-                '</strong> \
-                  <strong class="month">' +
-                month +
+                // date +
+                // '</strong> \
+                //   <strong class="month">' +
+                // month +
                 '</strong> \
                 </th>'
             );
