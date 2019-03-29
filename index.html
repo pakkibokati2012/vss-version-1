@@ -58,6 +58,7 @@
             <tr id="table-head"></tr>
           </thead>
           <tbody id="table-body">
+            <tr id="08-09"></tr>
             <tr id="09-10"></tr>
             <tr id="10-11"></tr>
             <tr id="11-12"></tr>
@@ -66,6 +67,9 @@
             <tr id="14-15"></tr>
             <tr id="15-16"></tr>
             <tr id="16-17"></tr>
+            <tr id="17-18"></tr>
+            <tr id="18-19"></tr>
+            <tr id="19-20"></tr>
           </tbody>
         </table>
       </div>
@@ -99,6 +103,7 @@
         function makeTable() {
           $('#date-info').empty();
           $('#table-head').empty();
+          $('#08-09').empty();
           $('#09-10').empty();
           $('#10-11').empty();
           $('#11-12').empty();
@@ -107,6 +112,9 @@
           $('#14-15').empty();
           $('#15-16').empty();
           $('#16-17').empty();
+          $('#17-18').empty();
+          $('#18-19').empty();
+          $('#19-20').empty();
 
           $('#date-info').append(
             '<p>' +
@@ -121,6 +129,7 @@
           );
 
           $('#table-head').append('<th><strong class="vss">VSS</strong></th>');
+          $('#08-09').append('<td> <div class="clock"> 8-9 </div> </td>');
           $('#09-10').append('<td> <div class="clock"> 9-10 </div> </td>');
           $('#10-11').append('<td> <div class="clock"> 10-11 </div> </td>');
           $('#11-12').append('<td> <div class="clock"> 11-12 </div> </td>');
@@ -129,6 +138,10 @@
           $('#14-15').append('<td> <div class="clock"> 14-15 </div> </td>');
           $('#15-16').append('<td> <div class="clock"> 15-16 </div> </td>');
           $('#16-17').append('<td> <div class="clock"> 16-17 </div> </td>');
+          $('#17-18').append('<td> <div class="clock"> 17-18 </div> </td>');
+          $('#18-19').append('<td> <div class="clock"> 18-19 </div> </td>');
+          $('#19-20').append('<td> <div class="clock"> 19-20 </div> </td>');
+
           for (i = 0; i <= 6; i++) {
             var date = days[i].format('DD'); // 1 2 ... 31
             var day = days[i].format('ddd'); // Sun Mon ..
@@ -146,6 +159,25 @@
                 // month +
                 '</strong> \
                 </th>'
+            );
+            $('#08-09').append(
+              ' \
+              <td> \
+                <div class="action-block" id="08-09-' +
+                date +
+                '-' +
+                month +
+                '-' +
+                year +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
             );
             $('#09-10').append(
               ' \
@@ -284,6 +316,63 @@
               ' \
               <td> \
                 <div class="action-block" id="16-17-' +
+                date +
+                '-' +
+                month +
+                '-' +
+                year +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#17-18').append(
+              ' \
+              <td> \
+                <div class="action-block" id="17-18-' +
+                date +
+                '-' +
+                month +
+                '-' +
+                year +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#18-19').append(
+              ' \
+              <td> \
+                <div class="action-block" id="18-19-' +
+                date +
+                '-' +
+                month +
+                '-' +
+                year +
+                '"> \
+                    <span class="action"> \
+                        <img class="false" src="images/unavailable.png" alt="action" width="30" height="30"> \
+                        <img class="true" src="images/available.png" alt="action" width="30" height="30"> \
+                    </span> \
+                    <span class="status false">UNAVAILABLE</span> \
+                    <span class="status true">AVAILABLE</span></div> \
+            </td> \
+            '
+            );
+            $('#19-20').append(
+              ' \
+              <td> \
+                <div class="action-block" id="19-20-' +
                 date +
                 '-' +
                 month +
